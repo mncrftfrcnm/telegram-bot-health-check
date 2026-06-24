@@ -1,0 +1,23 @@
+services:
+  aiogram-bot-monitor:
+    build: .
+    image: aiogram-bot-monitor
+    container_name: aiogram-bot-monitor
+    restart: unless-stopped
+
+    env_file:
+      - .env
+
+    environment:
+      - CONFIG_PATH=config.yaml
+      - TZ=Asia/Dubai
+      - PYTHONUNBUFFERED=1
+
+    volumes:
+      - ./config.yaml:/app/config.yaml:ro
+
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"

@@ -1,0 +1,55 @@
+# Main monitoring bot token.
+# Safer: keep the real token in .env as MONITOR_BOT_TOKEN.
+bot_token_env: MONITOR_BOT_TOKEN
+
+# Bot you want to test. Must include @.
+# Bot-to-bot communication must be enabled for BOTH bots in BotFather.
+target_bot: "@YourTargetBot"
+
+# When to write/test.
+schedule:
+  run_on_start: true
+  interval_seconds: 300
+  timeout_seconds: 45
+  delay_between_commands_seconds: 2
+
+# What to send to the tested bot.
+commands:
+  - name: start
+    message: "/start"
+    enabled: true
+    # Optional. If empty/null, any reply counts as OK.
+    expect_contains: null
+
+  - name: health
+    message: "/health"
+    enabled: true
+    expect_contains: "ok"
+
+  - name: status
+    message: "/status"
+    enabled: false
+    expect_contains: null
+
+report:
+  # Whether to send monitoring reports to users.
+  send_to_users: true
+
+  # Users/chats that will receive reports.
+  # Each user must first open your monitoring bot and press /start.
+  user_chat_ids:
+    - 123456789
+
+  # "status" = only OK/FAIL/TIMEOUT per command.
+  # "full" = include the actual target bot replies too.
+  mode: "status"
+
+  # If true, edit the previous report message in each chat instead of spamming new messages.
+  # If Telegram refuses editing, the bot sends a new message.
+  edit_previous_message: true
+
+  # Optional: also write the report inside the bot-to-bot chat with target_bot.
+  also_write_to_target_chat: false
+
+  # Limit result text length in full mode.
+  max_reply_chars: 1000
