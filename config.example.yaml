@@ -2,7 +2,7 @@
 # Safer: keep the real token in .env as MONITOR_BOT_TOKEN.
 bot_token_env: MONITOR_BOT_TOKEN
 
-# Bot you want to test. Must include @.
+# Bot you want to test. The @ prefix is recommended.
 # Bot-to-bot communication must be enabled for BOTH bots in BotFather.
 target_bot: "@YourTargetBot"
 
