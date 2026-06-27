@@ -27,7 +27,7 @@ cp config.example.yaml config.yaml
 Edit `.env` and set your monitor bot token:
 
 ```env
-MONITOR_BOT_TOKEN=123456:replace_me
+MONITOR_BOT_TOKEN=replace_with_your_monitor_bot_token
 ```
 
 Edit `config.yaml` and set:
